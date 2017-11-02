@@ -44,17 +44,12 @@ class ApiFacade extends BaseApi
     /**
      * @param string $publicId
      * @param string $contents
-     * @param bool $overwrite
+     * @param array [$options]
      * @return array
      */
-    public function upload($publicId, $contents, $overwrite = false)
+    public function upload($publicId, $contents, $options = [])
     {
-        $options = [
-            'public_id' => $publicId
-        ];
-        if ($overwrite) {
-            $options['overwrite'] = true;
-        }
+        $options['public_id'] = $publicId;
 
         return Uploader::upload(new DataUri($contents), $options);
     }
